@@ -42,9 +42,9 @@ import (
 	"time"
 
 	"github.com/celzero/firestack/intra/dnsx"
-	"github.com/celzero/firestack/intra/xdns"
 	"github.com/celzero/firestack/intra/doh/ipmap"
 	"github.com/celzero/firestack/intra/split"
+	"github.com/celzero/firestack/intra/xdns"
 	"github.com/eycorsican/go-tun2socks/common/log"
 	"golang.org/x/net/dns/dnsmessage"
 )
@@ -105,14 +105,14 @@ type Transport interface {
 // TODO: Keep a context here so that queries can be canceled.
 type transport struct {
 	Transport
-	url      string
-	hostname string
-	port     int
-	ips      ipmap.IPMap
-	client   http.Client
-	dialer   *net.Dialer
-	listener Listener
-	bravedns dnsx.BraveDNS
+	url                string
+	hostname           string
+	port               int
+	ips                ipmap.IPMap
+	client             http.Client
+	dialer             *net.Dialer
+	listener           Listener
+	bravedns           dnsx.BraveDNS
 	hangoverLock       sync.RWMutex
 	hangoverExpiration time.Time
 }
@@ -696,4 +696,3 @@ func tryServfail(q []byte) []byte {
 	}
 	return response
 }
-
